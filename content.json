@@ -1,0 +1,20 @@
+[
+  {
+    "FirstName": "WIlliam",
+    "LastName": "hägg",
+    "PhoneNumber": "2292",
+    "Email": "William@domain.com",
+    "StreetName": "Malcusgatan 3D",
+    "City": "Halmstad",
+    "PostalCode": "223"
+  },
+  {
+    "FirstName": "Marko",
+    "LastName": "",
+    "PhoneNumber": "223232",
+    "Email": "",
+    "StreetName": "Markostreet",
+    "City": "Halmastad",
+    "PostalCode": "232323"
+  }
+]
