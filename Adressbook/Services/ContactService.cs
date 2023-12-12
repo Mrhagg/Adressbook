@@ -24,14 +24,12 @@ public class ContactService : IContactService
             {
                 _contacts.Add(contact);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, Formatting.Indented));
-
                 response.Status = Enums.ServiceResultStatus.SUCCESSED;
             }
             else
             {
                 response.Status = Enums.ServiceResultStatus.ALREADY_EXISTS;
             }
-
         }
         catch (Exception ex)
         {
@@ -39,10 +37,7 @@ public class ContactService : IContactService
             response.Status = Enums.ServiceResultStatus.FAILED;
             response.Result = ex.Message;
         }
-
         return response;
-
-         
     }
 
     public IEnumerable<IContactModels> GetContacts() 
@@ -54,30 +49,26 @@ public class ContactService : IContactService
             {
                 _contacts = JsonConvert.DeserializeObject<List<IContactModels>>(content)!;
             }
-           
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return _contacts;
     }
 
-    public ServiceResult GetContactsFromList()
+
     {
         ServiceResult response = new ServiceResult();
 
         try
         {
             response.Status = Enums.ServiceResultStatus.SUCCESSED;
-            response.Result = _contacts;
+            return new ServiceResult { Status = Enums.ServiceResultStatus.SUCCESSED, };
         }
-        catch (Exception ex)
+        else
         {
-            Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceResultStatus.FAILED;
-            response.Result = ex.Message;
+            return new ServiceResult { Status = Enums.ServiceResultStatus.FAILED };
+        }
         }
 
-        return response;
-    }
 
 
     public ServiceResult DeleteContactFromList(IContactModels contact)
