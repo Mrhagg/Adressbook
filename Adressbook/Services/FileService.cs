@@ -44,7 +44,6 @@ public class FileService(string filePath) : IFileService
         }
         catch (Exception ex) { Debug.WriteLine(ex); }
         return null!;
-        {
 
         }
     }
