@@ -10,20 +10,27 @@ namespace Adressbook.Services;
 
 public class ContactService : IContactService
 {
-    private readonly FileService _fileService = new FileService(@"C:\my-projects\Adressbook\content.json");
+    private readonly FileService _fileService = new FileService(@"C:\my-projects\Adressbook\Adressbook\content.json");
 
     private List<IContactModels> _contacts = new List<IContactModels>();
 
+    public ContactService() { GetContacts(); }
     public ServiceResult AddContactToList(IContactModels contact)
     {
-        ServiceResult response = new ServiceResult();
+       ServiceResult response = new ServiceResult();
+
+        var settings = new JsonSerializerSettings()
+        {
+            TypeNameHandling = TypeNameHandling.All,
+            Formatting = Formatting.Indented
+        };
 
         try
         {
             if (!_contacts.Any(x => x.Email == contact.Email))
             {
                 _contacts.Add(contact);
-                _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, Formatting.Indented));
+                _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts,settings));
                 response.Status = Enums.ServiceResultStatus.SUCCESSED;
             }
             else
@@ -40,14 +47,20 @@ public class ContactService : IContactService
         return response;
     }
 
-    public IEnumerable<IContactModels> GetContacts() 
+
+    public IEnumerable<IContactModels> GetContacts()
     {
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.All
+        };
+
         try
         {
             var content = _fileService.GetContentFromFile();
             if (!string.IsNullOrEmpty(content))
             {
-                _contacts = JsonConvert.DeserializeObject<List<IContactModels>>(content)!;
+                _contacts = JsonConvert.DeserializeObject<List<IContactModels>>(content, settings)!;
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
@@ -55,19 +68,21 @@ public class ContactService : IContactService
     }
 
 
-    {
-        ServiceResult response = new ServiceResult();
 
-        try
+    public ServiceResult DeleteContactByEmail(string email)
+    {
+        var contactToRemove = _contacts.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+        if (contactToRemove != null)
         {
-            response.Status = Enums.ServiceResultStatus.SUCCESSED;
+            _contacts.Remove(contactToRemove);
             return new ServiceResult { Status = Enums.ServiceResultStatus.SUCCESSED, };
         }
         else
         {
             return new ServiceResult { Status = Enums.ServiceResultStatus.FAILED };
         }
-        }
+    }
 
 
 
@@ -95,24 +110,33 @@ public class ContactService : IContactService
         }
 
         return response;
-
     }
 
-    public ServiceResult DeleteContactByEmail(string email)
+
+    public ServiceResult GetContactsFromList()
     {
-        var contactToRemove = _contacts.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        ServiceResult response = new ServiceResult();
 
-        if (contactToRemove != null)
+        try
         {
-            _contacts.Remove(contactToRemove);
-            return new ServiceResult { Status = Enums.ServiceResultStatus.SUCCESSED, };
+            response.Status = Enums.ServiceResultStatus.SUCCESSED;
+            response.Result = _contacts;
         }
-        else
+        catch (Exception ex)
         {
-            return new ServiceResult { Status = Enums.ServiceResultStatus.FAILED };
+            Debug.WriteLine(ex.Message);
+            response.Status = Enums.ServiceResultStatus.FAILED;
+            response.Result = ex.Message;
         }
+
+        return response;
     }
-  }
+}
+
+ 
+
+    
+  
 
     
 

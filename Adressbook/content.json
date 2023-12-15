@@ -1,0 +1,35 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Adressbook.Interfaces.IContactModels, Adressbook]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Adressbook.Models.ContactModels, Adressbook",
+      "FirstName": "William",
+      "LastName": "Hägg",
+      "PhoneNumber": "053-12345",
+      "Email": "William@domain.com",
+      "StreetName": "Markisgatan 5A",
+      "City": "Halmstad",
+      "PostalCode": "30123"
+    },
+    {
+      "$type": "Adressbook.Models.ContactModels, Adressbook",
+      "FirstName": "Zlatan",
+      "LastName": "Ibrahimovic",
+      "PhoneNumber": "023-244453",
+      "Email": "Ibra@domain.com",
+      "StreetName": "Milanostreet",
+      "City": "Milano",
+      "PostalCode": "00234"
+    },
+    {
+      "$type": "Adressbook.Models.ContactModels, Adressbook",
+      "FirstName": "Dejan",
+      "LastName": "Kulusevski",
+      "PhoneNumber": "023-11222",
+      "Email": "Kulusevksi@domain.com",
+      "StreetName": "Tottenhamstreet",
+      "City": "London",
+      "PostalCode": "003322"
+    }
+  ]
+}

@@ -10,10 +10,10 @@ public interface IFileService
 }
 
 
-public class FileService(string filePath) : IFileService
+public class FileService : IFileService
 {
-    private readonly string _filePath = filePath;
-
+    private string _filePath;
+    public FileService(string filePath) {  _filePath = filePath; }
 
     public bool SaveContentToFile(string content)
     {
@@ -36,17 +36,13 @@ public class FileService(string filePath) : IFileService
     {
         try
         {
-            if (File.Exists(_filePath)) 
-            {
-                using var sr = new StreamReader(_filePath);
-                return sr.ReadToEnd();
-            }
+
+                using (StreamReader streamReader = new StreamReader(_filePath))
+                {
+                   return streamReader.ReadToEnd();
+                }
         }
         catch (Exception ex) { Debug.WriteLine(ex); }
         return null!;
-
-        }
     }
-
-    
 }
