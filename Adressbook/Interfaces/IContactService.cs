@@ -1,19 +1,19 @@
-﻿using Adressbook.Models.Responses;
-
+﻿using Adressbook.Models;
+using Adressbook.Models.Responses;
 
 namespace Adressbook.Interfaces;
 
 public interface IContactService
 {
-    ServiceResult AddContactToList(IContactModels contact);
+    ServiceResult AddContactToList(IContact contact);
 
     ServiceResult GetContactsFromList();
 
-    ServiceResult DeleteContactFromList(IContactModels contact);
+    ServiceResult DeleteContactFromList(IContact contact);
 
     ServiceResult DeleteContactByEmail (string email);
 
-    
+    IEnumerable<IContact> GetContacts();
 
-
+    bool AddToList(IContact contact);
 }

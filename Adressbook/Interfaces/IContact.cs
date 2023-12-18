@@ -1,6 +1,6 @@
 ﻿namespace Adressbook.Interfaces
 {
-    public interface IContactModels
+    public interface IContact
     {
         string City { get; set; }
         string Email { get; set; }

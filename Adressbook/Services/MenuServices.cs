@@ -92,7 +92,7 @@ public class MenuServices : IMenuServices
 
     private void ShowAddContactOption()
     {
-        var contactModels = new ContactModels();
+        var contactModels = new Contact();
 
         DisplayMenuTitle("Lägg till ny kontakt");
 
@@ -147,7 +147,7 @@ public class MenuServices : IMenuServices
 
         if (res.Status == Enums.ServiceResultStatus.SUCCESSED)
         {
-            if (res.Result is List<IContactModels> contactlist)
+            if (res.Result is List<IContact> contactlist)
             {
 
                 if (!contactlist.Any())

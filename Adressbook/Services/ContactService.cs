@@ -1,4 +1,5 @@
 ﻿using Adressbook.Interfaces;
+using Adressbook.Models;
 using Adressbook.Models.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -12,10 +13,10 @@ public class ContactService : IContactService
 {
     private readonly FileService _fileService = new FileService(@"C:\my-projects\Adressbook\Adressbook\content.json");
 
-    private List<IContactModels> _contacts = new List<IContactModels>();
+    private List<IContact> _contacts = new List<IContact>();
 
     public ContactService() { GetContacts(); }
-    public ServiceResult AddContactToList(IContactModels contact)
+    public ServiceResult AddContactToList(IContact contact)
     {
        ServiceResult response = new ServiceResult();
 
@@ -48,7 +49,7 @@ public class ContactService : IContactService
     }
 
 
-    public IEnumerable<IContactModels> GetContacts()
+    public IEnumerable<IContact> GetContacts()
     {
         var settings = new JsonSerializerSettings
         {
@@ -60,7 +61,7 @@ public class ContactService : IContactService
             var content = _fileService.GetContentFromFile();
             if (!string.IsNullOrEmpty(content))
             {
-                _contacts = JsonConvert.DeserializeObject<List<IContactModels>>(content, settings)!;
+                _contacts = JsonConvert.DeserializeObject<List<IContact>>(content, settings)!;
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
@@ -86,7 +87,7 @@ public class ContactService : IContactService
 
 
 
-    public ServiceResult DeleteContactFromList(IContactModels contact)
+    public ServiceResult DeleteContactFromList(IContact contact)
     {
         ServiceResult response = new ServiceResult();
 
@@ -130,6 +131,19 @@ public class ContactService : IContactService
         }
 
         return response;
+    }
+
+  
+    public bool AddToList(IContact contact)
+    {
+       try
+        {
+            _contacts.Add(contact);
+            return true;
+        }
+        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        return false;
+       
     }
 }
 

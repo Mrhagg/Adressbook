@@ -3,7 +3,7 @@
 namespace Adressbook.Models;
 
 
-public class ContactModels : IContactModels
+public class Contact : IContact
 {
     public string FirstName { get; set; } = null!;
 
