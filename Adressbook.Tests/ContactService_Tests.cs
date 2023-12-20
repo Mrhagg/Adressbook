@@ -15,11 +15,12 @@ public class ContactService_Tests
         IContact contact = new Contact { FirstName = "William", LastName = "Hägg", Email = "William@domain.com", City = "Halmstad", PhoneNumber = "022-222", PostalCode = "02022", StreetName = "Malcusgatan" };
         
         // Act
-        bool result = contactService.AddToList(contact);
-
+        var result = contactService.AddContactToList(contact);
+        bool targeted_result = contactService.AddToList(contact);
 
         // Assert
-       Assert.True(result);
+        Assert.True(targeted_result);
+        
     }
 
     [Fact]

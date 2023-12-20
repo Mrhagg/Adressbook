@@ -1,5 +1,9 @@
 ﻿namespace Adressbook.Interfaces
 {
+
+    /// <summary>
+    /// Shows possible string names from Icontact.
+    /// </summary>
     public interface IContact
     {
         string City { get; set; }

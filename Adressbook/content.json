@@ -20,6 +20,26 @@
       "StreetName": "markostreet",
       "City": "Halmstad",
       "PostalCode": "0022"
+    },
+    {
+      "$type": "Adressbook.Models.Contact, Adressbook",
+      "FirstName": "Zlatan",
+      "LastName": "Ibrahimovic",
+      "PhoneNumber": "0234-12345",
+      "Email": "Zlatan@domain.com",
+      "StreetName": "milanostreet",
+      "City": "Milano",
+      "PostalCode": "03055"
+    },
+    {
+      "$type": "Adressbook.Models.Contact, Adressbook",
+      "FirstName": "Patrik",
+      "LastName": "Hägerfors",
+      "PhoneNumber": "034-123456",
+      "Email": "Hägerfors@domain.com",
+      "StreetName": "Granitvägen3D",
+      "City": "Stockholm",
+      "PostalCode": "00235"
     }
   ]
 }

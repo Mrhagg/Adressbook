@@ -14,17 +14,21 @@ public class MenuServices : IMenuServices
 
     private readonly IContactService _contactService = new ContactService();
 
+  /// <summary>
+  /// Shows the starting Menu when u open the consolapplication, and gives u multipel choices to chose from.
+  /// </summary>
     public void ShowMainMenu()
     {
         while (true)
         {
-            DisplayMenuTitle("MENY ALTERNATIV");
+            DisplayMenuTitle("KONTAKTMENY");
             Console.WriteLine($"{"1.",-3} Lägg till kontakt");
             Console.WriteLine($"{"2.",-3} Visa kontaktlista");
             Console.WriteLine($"{"0.",-3} Klicka här för att stänga ner sidan");
             Console.WriteLine($"{"3.",-3} Klicka här för att ta bort en kontakt med email");
             Console.WriteLine();
             Console.Write("Meny alternativ:  ");
+           
 
             var option = Console.ReadLine();
 
@@ -51,14 +55,16 @@ public class MenuServices : IMenuServices
         }
     }
 
-
+   /// <summary>
+   /// This method shows us how we can delete an contact from the contact, also how we can remove a contact if u write the persons emailadress.
+   /// </summary>
     private void ShowDeleteContactOption()
     {
         DisplayMenuTitle("Ta bort en kontakt från listan");
         Console.Write("Ange en e-postadress för kontakten du vill ta bort: ");
         var email = Console.ReadLine();
 
-        var result = _contactService.DeleteContactByEmail(email);
+        var result = _contactService.DeleteContactByEmail(email!);
 
         switch (result.Status)
         {
@@ -78,7 +84,9 @@ public class MenuServices : IMenuServices
         DisplayPressAnyKey();
     }
     
-   
+    /// <summary>
+    /// This one shows us a choice if we want to exit the application
+    /// </summary>
     private void ShowExitApplicationOption()
     {
         Console.Clear();
@@ -87,9 +95,13 @@ public class MenuServices : IMenuServices
 
         if (option.Equals("Ja", StringComparison.CurrentCultureIgnoreCase))
             Environment.Exit(0);
+        
 
     }
 
+    /// <summary>
+    /// This shows up when u want to create a new contact in your contactlist.
+    /// </summary>
     private void ShowAddContactOption()
     {
         var contactModels = new Contact();
@@ -139,10 +151,10 @@ public class MenuServices : IMenuServices
 
     }
 
-
+   
     private void ShowViewContactListOption()
     {
-        DisplayMenuTitle("Kontakt lista");
+        DisplayMenuTitle("KONTAKT LISTA");
         var res = _contactService.GetContactsFromList();
 
         if (res.Status == Enums.ServiceResultStatus.SUCCESSED)
@@ -170,18 +182,23 @@ public class MenuServices : IMenuServices
 
     
    
-
+    /// <summary>
+    /// Shows the menu titel in your consolapplication.
+    /// </summary>
+    /// <param name="title">titel shows the name of the menu, and in this case the name is ''KONTAKTMENY''</param>
     private void DisplayMenuTitle(string title)
     {
         Console.Clear();
-        Console.WriteLine($"##{title}##");
+        Console.WriteLine($"-----------------------------------------  {title}  -------------------------------------------------------");
         Console.WriteLine();
     }
 
+   
     private void DisplayPressAnyKey()
     {
         Console.WriteLine();
         Console.WriteLine("Tryck på valfri tangent för att fortsätta");
+        Console.WriteLine("\n-----------------------------------------------------------------------------------------------------------------------");
         Console.ReadKey();
     }
 }

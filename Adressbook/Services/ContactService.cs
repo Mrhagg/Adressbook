@@ -1,5 +1,4 @@
 ﻿using Adressbook.Interfaces;
-using Adressbook.Models;
 using Adressbook.Models.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -16,8 +15,10 @@ public class ContactService : IContactService
     private List<IContact> _contacts = new List<IContact>();
 
     public ContactService() { GetContacts(); }
+
     public ServiceResult AddContactToList(IContact contact)
     {
+
        ServiceResult response = new ServiceResult();
 
         var settings = new JsonSerializerSettings()
@@ -33,6 +34,7 @@ public class ContactService : IContactService
                 _contacts.Add(contact);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts,settings));
                 response.Status = Enums.ServiceResultStatus.SUCCESSED;
+             
             }
             else
             {
@@ -58,6 +60,7 @@ public class ContactService : IContactService
 
         try
         {
+            
             var content = _fileService.GetContentFromFile();
             if (!string.IsNullOrEmpty(content))
             {
