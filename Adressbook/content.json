@@ -5,11 +5,31 @@
       "$type": "Adressbook.Models.Contact, Adressbook",
       "FirstName": "William",
       "LastName": "Hägg",
-      "PhoneNumber": "022-222",
+      "PhoneNumber": "073-1234567",
       "Email": "William@domain.com",
-      "StreetName": "Malcusgatan",
+      "StreetName": "willystreet",
       "City": "Halmstad",
-      "PostalCode": "02022"
+      "PostalCode": "304566"
+    },
+    {
+      "$type": "Adressbook.Models.Contact, Adressbook",
+      "FirstName": "Zlatan",
+      "LastName": "Ibrahimovic",
+      "PhoneNumber": "073-1234567",
+      "Email": "zlatan@domain.com",
+      "StreetName": "Zlatanstreet",
+      "City": "Milano",
+      "PostalCode": "3045666"
+    },
+    {
+      "$type": "Adressbook.Models.Contact, Adressbook",
+      "FirstName": "Rafael",
+      "LastName": "Nadal",
+      "PhoneNumber": "072-100034",
+      "Email": "Rafael@domain.com",
+      "StreetName": "Madridstreet",
+      "City": "Madrid",
+      "PostalCode": "098245"
     }
   ]
 }
