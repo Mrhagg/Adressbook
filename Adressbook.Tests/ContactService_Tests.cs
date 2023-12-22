@@ -15,10 +15,11 @@ public class ContactService_Tests
         IContact contact = new Contact { FirstName = "William", LastName = "Hägg", Email = "William@domain.com", City = "Halmstad", PhoneNumber = "022-222", PostalCode = "02022", StreetName = "Malcusgatan" };
         
         // Act
-        var result = contactService.AddContactToList(contact);
+        var serviceResult = contactService.AddContactToList(contact);
         bool targeted_result = contactService.AddToList(contact);
 
         // Assert
+        Assert.NotNull(serviceResult);
         Assert.True(targeted_result);
         
     }
@@ -35,7 +36,7 @@ public class ContactService_Tests
 
 
         //Assert
-        Assert.NotNull(result);
+       Assert.NotNull(result);
        IContact returned_contact = result.FirstOrDefault()!;
        Assert.NotNull(returned_contact);
        Assert.Equal(contact.FirstName, returned_contact.FirstName);

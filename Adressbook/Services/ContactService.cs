@@ -60,7 +60,6 @@ public class ContactService : IContactService
 
         try
         {
-            
             var content = _fileService.GetContentFromFile();
             if (!string.IsNullOrEmpty(content))
             {
@@ -72,50 +71,28 @@ public class ContactService : IContactService
     }
 
 
-
     public ServiceResult DeleteContactByEmail(string email)
     {
+       
         var contactToRemove = _contacts.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        var settings = new JsonSerializerSettings()
+        {
+            TypeNameHandling = TypeNameHandling.All,
+            Formatting = Formatting.Indented
+        };
 
         if (contactToRemove != null)
         {
             _contacts.Remove(contactToRemove);
+            _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, settings));
             return new ServiceResult { Status = Enums.ServiceResultStatus.SUCCESSED, };
         }
         else
         {
+           
             return new ServiceResult { Status = Enums.ServiceResultStatus.FAILED };
         }
     }
-
-
-
-    public ServiceResult DeleteContactFromList(IContact contact)
-    {
-        ServiceResult response = new ServiceResult();
-
-        try
-        {
-            if (!_contacts.Any(x => x.Email == contact.Email))
-            {
-                _contacts.Remove(contact);
-                response.Status = Enums.ServiceResultStatus.SUCCESSED;
-            }
-            else
-            {
-                response.Status = Enums.ServiceResultStatus.ALREADY_EXISTS;
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceResultStatus.FAILED;
-            response.Result = ex.Message;
-        }
-
-        return response;
-    }
-
 
     public ServiceResult GetContactsFromList()
     {
@@ -136,7 +113,6 @@ public class ContactService : IContactService
         return response;
     }
 
-  
     public bool AddToList(IContact contact)
     {
        try

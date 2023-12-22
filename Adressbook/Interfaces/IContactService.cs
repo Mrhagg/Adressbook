@@ -18,14 +18,6 @@ public interface IContactService
     ServiceResult GetContactsFromList();
 
     /// <summary>
-    /// Removes a contact from the contactlist.
-    /// </summary>
-    /// <param name="contact">a contact of the type IContact</param>
-    /// <returns>If true removes a contact from the contact list, else is null.</returns>
-    ServiceResult DeleteContactFromList(IContact contact);
-
-
-    /// <summary>
     /// Removes a contact by writing specific contact-email.
     /// </summary>
     /// <param name="email">enters yuor email as a string.</param>
