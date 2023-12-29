@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    /// Shows possible string names from Icontact.
+    /// Shows all possible string names from Icontact that can be implementet in the consolapp.
     /// </summary>
     public interface IContact
     {

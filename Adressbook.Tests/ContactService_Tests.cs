@@ -5,10 +5,16 @@ using NuGet.Frameworks;
 
 namespace Adressbook.Tests;
 
+
 public class ContactService_Tests
 {
+
+    /// <summary>
+    /// Here we are testing the functionality of adding a contact to a list, and verifying that the addition of a contact was succesfull.
+    /// </summary>
+    
     [Fact]
-    public void AddToList_AddCustomersToList_ThenReturnTrue()
+    public void AddToList_AddContactsToList_ThenReturnTrue()
     {
         // Arrange 
         IContactService contactService = new ContactService();
@@ -24,8 +30,12 @@ public class ContactService_Tests
         
     }
 
+
+    /// <summary>
+    ///  Here we are testing the functionality of recieving a list of contacts from a Contactservice.
+    ///  /// </summary>
     [Fact]
-    public void GetList_GetAllCustomerList_ThenReturnListOfCustomer()
+    public void GetList_GetAllContactList_ThenReturnListOfContacts()
     {
         // Arrange
         IContactService contactService = new ContactService();

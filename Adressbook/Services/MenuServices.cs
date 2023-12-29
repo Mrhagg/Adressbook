@@ -24,8 +24,8 @@ public class MenuServices : IMenuServices
             DisplayMenuTitle("KONTAKTMENY");
             Console.WriteLine($"{"1.",-3} Lägg till kontakt");
             Console.WriteLine($"{"2.",-3} Visa kontaktlista");
-            Console.WriteLine($"{"0.",-3} Klicka här för att stänga ner sidan");
             Console.WriteLine($"{"3.",-3} Klicka här för att ta bort en kontakt med email");
+            Console.WriteLine($"{"0.",-3} Klicka här för att stänga ner sidan");
             Console.WriteLine();
             Console.Write("Meny alternativ:  ");
            
@@ -56,7 +56,7 @@ public class MenuServices : IMenuServices
     }
 
    /// <summary>
-   /// This method shows us how we can delete an contact from the contact, also how we can remove a contact if u write the persons emailadress.
+   /// This method shows us how we can delete a contact from the contactlist, also how we can remove a contact if u write the contacts emailadress.
    /// </summary>
     private void ShowDeleteContactOption()
     {
@@ -100,7 +100,7 @@ public class MenuServices : IMenuServices
     }
 
     /// <summary>
-    /// This shows up when u want to create a new contact in your contactlist.
+    /// This shows up when u want to create a new contact in your contactlist, and also delcares if the contact was added or not.
     /// </summary>
     private void ShowAddContactOption()
     {
@@ -151,7 +151,9 @@ public class MenuServices : IMenuServices
 
     }
 
-   
+   /// <summary>
+   /// Shows your contactlist options u got. 
+   /// </summary>
     private void ShowViewContactListOption()
     {
         DisplayMenuTitle("KONTAKT LISTA");
@@ -193,7 +195,9 @@ public class MenuServices : IMenuServices
         Console.WriteLine();
     }
 
-   
+   /// <summary>
+   /// A short key command that makes it easy in the consolapp to use any key on your keyboard to navigate further.
+   /// </summary>
     private void DisplayPressAnyKey()
     {
         Console.WriteLine();
